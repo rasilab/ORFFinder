@@ -45,8 +45,8 @@ def getORFs (sequence, minimum_length=75, start_codons=["ATG"], stop_codons=["TA
     forward = str(sequence.seq).upper()
     reverse = str(sequence.reverse_complement().seq).upper()
 
-    forward_start, forward_stop = findSense(forward, "+")
-    reverse_start, reverse_stop = findSense(reverse, "-")
+    forward_start, forward_stop = findSense(forward, "+", start_codons, stop_codons)
+    reverse_start, reverse_stop = findSense(reverse, "-", start_codons, stop_codons)
 
     all_starts = forward_start + reverse_start
     all_stops = forward_stop + reverse_stop
