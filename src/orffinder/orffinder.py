@@ -112,8 +112,8 @@ def getORFs (sequence, minimum_length=75, start_codons=["ATG"], stop_codons=["TA
             appendable = True
 
             for orf_2 in orfs:
-
-                if orf_2["start"] < orf_1["start"] and orf_2["end"] > orf_1["end"] and orf_1["end"] != -1:
+                # modify ORFfinder to exclude nested ORFs only if they are in the same frame and same sense strand
+                if orf_2["start"] < orf_1["start"] and orf_2["end"] >= orf_1["end"] and orf_1["end"] != -1 and orf_1["frame"] == orf_2["frame"] and orf_1["sense"] == orf_2["sense"]:
                     appendable = False
                     break
 
